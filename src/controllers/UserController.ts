@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import User from "../models/User";
-import bcrypt from "bcrypt";
-
 class UserController {
   public async index(req: Request, res: Response): Promise<Response> {
     const userRepository = getRepository(User);
@@ -13,18 +11,21 @@ class UserController {
 
   public async store(req: Request, res: Response): Promise<Response> {
 
-    let password = req.body.password
-
-    password = await bcrypt.hash(req.body.password, 10);
-
     const data = {
       username: req.body.username,
       age: req.body.age,
       email: req.body.email,
-      password: password,
+      password: req.body.password,
     };
-    
+
     const userRepository = getRepository(User);
+
+    const userExist = await userRepository.findOne({ where: { email: req.body.email}})
+
+    if(userExist){
+      return res.status(409).json({ message: "Email já cadastrado no sistema"})
+    }
+    
     const user = userRepository.create(data);
     await userRepository.save(user);
     

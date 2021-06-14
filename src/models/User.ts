@@ -4,9 +4,11 @@ import {
   Column,
   OneToMany,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  BeforeInsert,
+  BeforeUpdate
 } from "typeorm";
-
+import bcrypt from "bcrypt";
 import Dream from "./Dream";
 
 @Entity("users")
@@ -35,4 +37,10 @@ export default class User {
 
   @OneToMany(() => Dream, dream => dream.user)
     dreams: Dream[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword(){
+    this.password = bcrypt.hashSync(this.password, 10);
+  }
 }

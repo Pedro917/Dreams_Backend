@@ -1,11 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
-import User from "../models/User"
+import User from "../models/User";
 
 @Entity("dreams")
 export default class Profile {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   title: string;
@@ -19,6 +26,22 @@ export default class Profile {
   @Column()
   url: string;
 
-  @ManyToOne(() => User, user => user.dreams)
-    user: User;
+  @Column()
+  userId: number;
+
+  @CreateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+  })
+  created_at: Date;
+
+  @UpdateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+    onUpdate: "CURRENT_TIMESTAMP(6)",
+  })
+  updated_at: Date;
+
+  @ManyToOne(() => User, (user) => user.dreams)
+  user: User;
 }

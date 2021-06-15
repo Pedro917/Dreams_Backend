@@ -26,7 +26,7 @@ export default class User {
   @Column()
   age: number;
 
-  @Column({select: false})
+  @Column()
   password: string;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })

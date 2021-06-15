@@ -2,9 +2,11 @@ import {
     Router
 } from "express"
 
+import AuthController from "./controllers/AuthController"
 import UserController from "./controllers/UserController"
 import DreamController from "./controllers/DreamControllers"
 
+import { AuthValidation } from "./validation/AuthValidation"
 import { UserValidation } from "./validation/UserValidation"
 import { DreamValidation } from "./validation/DreamValidation"
 
@@ -16,6 +18,8 @@ routes.get('/', (req, res) => {
         aplication: "Api Node"
     })
 })
+
+routes.post('/oauth/token', AuthValidation() ,AuthController.auth)
 
 routes.get('/users', UserController.index)
 routes.post('/users', UserValidation() ,UserController.store)

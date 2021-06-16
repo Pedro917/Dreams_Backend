@@ -18,18 +18,10 @@ class DreamControllers {
 
     const { title, description, price, url, userId } = req.body;
 
-    const data = {
-      title: title,
-      description: description,
-      price: price,
-      url: url,
-      userId: userId,
-    };
-
     try {
       //
       await userRepository.findOneOrFail(userId);
-      const dream = dreamRepository.create(data);
+      const dream = dreamRepository.create({ title, description, price, url, userId });
       await dreamRepository.save(dream);
       return res.status(201).json(dream);
       //

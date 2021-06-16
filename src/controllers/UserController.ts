@@ -40,7 +40,6 @@ class UserController {
       username,
       age,
       email,
-      password,
     } = req.body;
 
     if(await emailExists(email)){
@@ -57,7 +56,7 @@ class UserController {
       return res.status(404).json({ message: "Usuário Inexistente" });
     }
 
-    userRepository.merge(user, {username,age,email,password});
+    userRepository.merge(user, {username,age,email});
     const results = await userRepository.save(user);
     delete results.password;
     return res.status(200).json(results);

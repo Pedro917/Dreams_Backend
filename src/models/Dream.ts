@@ -42,6 +42,6 @@ export default class Profile {
   })
   updated_at: Date;
 
-  @ManyToOne(() => User, (user) => user.dreams)
+  @ManyToOne(() => User, (user) => user.dreams, { onDelete: 'CASCADE' })
   user: User;
 }

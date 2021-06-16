@@ -25,6 +25,8 @@ routes.post('/oauth/token', AuthValidation() ,AuthController.auth)
 
 routes.get('/users', autoMiddleware, UserController.index)
 routes.post('/users', UserValidation() ,UserController.store)
+routes.put('/users/:userId', autoMiddleware, UserController.edit)
+routes.delete('/users/:userId', autoMiddleware, UserController.delete)
 
 routes.get('/dreams', DreamController.index)
 routes.post('/dreams', DreamValidation() ,DreamController.store)

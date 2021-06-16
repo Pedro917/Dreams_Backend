@@ -14,7 +14,7 @@ class AuthController {
 
     if (!user) {
       return res
-        .status(401)
+        .status(404)
         .json({ message: "Usuário Inexistente" });
     }
     

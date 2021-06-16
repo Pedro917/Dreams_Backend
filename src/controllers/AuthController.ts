@@ -26,7 +26,7 @@ class AuthController {
         .json({ message: "Senha Incorreta" });
     }
 
-    const token = jwt.sign({ id: user.id}, 'secret', { expiresIn: '5d'});
+    const token = jwt.sign({ id: user.id}, process.env.SECRET_KEY, { expiresIn: '5d'});
 
     delete user.password
     return res.status(202).json({ user, token});

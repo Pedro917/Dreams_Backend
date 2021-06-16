@@ -1,3 +1,6 @@
 import {createConnection} from "typeorm";
 
-createConnection();
+createConnection()
+    .then(() => {
+        console.log("📦 Conexão realizada com sucesso!")
+    })

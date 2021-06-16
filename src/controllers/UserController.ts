@@ -8,7 +8,7 @@ class UserController {
 
     users.map((user) => delete user.password);
 
-    return res.status(200).json(users);
+    return res.status(200).json({userId: req.userId, users});
   }
 
   public async store(req: Request, res: Response): Promise<Response> {

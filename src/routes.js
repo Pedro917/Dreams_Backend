@@ -2,6 +2,8 @@ import {
     Router
 } from "express"
 
+import autoMiddleware from "./middlewares/authMiddleware"
+
 import AuthController from "./controllers/AuthController"
 import UserController from "./controllers/UserController"
 import DreamController from "./controllers/DreamControllers"
@@ -21,7 +23,7 @@ routes.get('/', (req, res) => {
 
 routes.post('/oauth/token', AuthValidation() ,AuthController.auth)
 
-routes.get('/users', UserController.index)
+routes.get('/users', autoMiddleware, UserController.index)
 routes.post('/users', UserValidation() ,UserController.store)
 
 routes.get('/dreams', DreamController.index)

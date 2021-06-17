@@ -11,13 +11,13 @@
     },
     "migrationsTableName": "custom_migration_table",
     "migrations":[
-        "./build/database/migrations/*.ts"
+        "./build/database/migrations/*.js"
     ],
     "cli": {
         "migrationsDir": "./build/database/migrations"
     },
     "entities": [
-        "./build/models/*.ts"
+        "./build/models/*.js"
     ]
 }
 

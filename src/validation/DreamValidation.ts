@@ -7,7 +7,7 @@ export function DreamValidation() {
             description: Joi.string(),
             price: Joi.number().required(),
             url: Joi.string(),
-            userId: Joi.number()
+            userId: Joi.number().required()
         })
     })
 }

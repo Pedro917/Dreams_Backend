@@ -80,8 +80,6 @@ class UserController {
     } catch (error) {
       return res.status(500).json({error});
     } 
-
-    
   }
 }
 

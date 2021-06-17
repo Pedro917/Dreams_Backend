@@ -2,7 +2,7 @@ import {
     Router
 } from "express"
 
-import autoMiddleware from "./middlewares/authMiddleware"
+import authMiddleware from "./middlewares/authMiddleware"
 
 import AuthController from "./controllers/AuthController"
 import UserController from "./controllers/UserController"
@@ -23,12 +23,14 @@ routes.get('/', (req, res) => {
 
 routes.post('/oauth/token', AuthValidation() ,AuthController.auth)
 
-routes.get('/users', autoMiddleware, UserController.index)
-routes.post('/users', UserValidation() ,UserController.store)
-routes.put('/users/:userId', autoMiddleware, UserController.edit)
-routes.delete('/users/:userId', autoMiddleware, UserController.delete)
+routes.get('/users', authMiddleware, UserController.index)
+routes.post('/users', [authMiddleware, UserValidation()], UserController.store)
+routes.put('/users/:userId', authMiddleware, UserController.edit)
+routes.delete('/users/:userId', authMiddleware, UserController.delete)
 
-routes.get('/dreams', DreamController.index)
-routes.post('/dreams', DreamValidation() ,DreamController.store)
+routes.get('/dreams', authMiddleware,DreamController.index)
+routes.post('/dreams', [authMiddleware, DreamValidation()], DreamController.store)
+routes.put('/dreams/:dreamId', authMiddleware, DreamController.edit)
+routes.delete('/dreams/:dreamId', authMiddleware, DreamController.delete)
 
 export default routes

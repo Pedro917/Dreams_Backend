@@ -36,21 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var createUsersDreams1623874462855 = /** @class */ (function () {
-    function createUsersDreams1623874462855() {
-        this.name = 'createUsersDreams1623874462855';
+var initialCreateUsersDreams1623955710729 = /** @class */ (function () {
+    function initialCreateUsersDreams1623955710729() {
+        this.name = 'initialCreateUsersDreams1623955710729';
     }
-    createUsersDreams1623874462855.prototype.up = function (queryRunner) {
+    initialCreateUsersDreams1623955710729.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("CREATE TABLE `users` (`id` int NOT NULL AUTO_INCREMENT, `username` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `age` int NOT NULL, `password` varchar(255) NOT NULL, `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `updated_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), PRIMARY KEY (`id`)) ENGINE=InnoDB")];
+                    case 0: return [4 /*yield*/, queryRunner.query("CREATE TABLE \"users\" (\"id\" SERIAL NOT NULL, \"username\" character varying NOT NULL, \"email\" character varying NOT NULL, \"age\" integer NOT NULL, \"password\" character varying NOT NULL, \"created_at\" TIMESTAMP NOT NULL DEFAULT ('now'::text)::timestamp(6) with time zone, \"updated_at\" TIMESTAMP NOT NULL DEFAULT ('now'::text)::timestamp(6) with time zone, CONSTRAINT \"PK_a3ffb1c0c8416b9fc6f907b7433\" PRIMARY KEY (\"id\"))")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE `dreams` (`id` int NOT NULL AUTO_INCREMENT, `title` varchar(255) NOT NULL, `description` varchar(255) NOT NULL, `price` int NOT NULL, `url` varchar(255) NOT NULL, `userId` int NOT NULL, `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `updated_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), PRIMARY KEY (`id`)) ENGINE=InnoDB")];
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE \"dreams\" (\"id\" SERIAL NOT NULL, \"title\" character varying NOT NULL, \"description\" character varying NOT NULL, \"price\" integer NOT NULL, \"url\" character varying NOT NULL, \"userId\" integer NOT NULL, \"created_at\" TIMESTAMP NOT NULL DEFAULT ('now'::text)::timestamp(6) with time zone, \"updated_at\" TIMESTAMP NOT NULL DEFAULT ('now'::text)::timestamp(6) with time zone, CONSTRAINT \"PK_b4f37d6173d7b9d9db610860082\" PRIMARY KEY (\"id\"))")];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE `dreams` ADD CONSTRAINT `FK_37ed376765930ab008dced8ab96` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION")];
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE \"dreams\" ADD CONSTRAINT \"FK_37ed376765930ab008dced8ab96\" FOREIGN KEY (\"userId\") REFERENCES \"users\"(\"id\") ON DELETE CASCADE ON UPDATE NO ACTION")];
                     case 3:
                         _a.sent();
                         return [2 /*return*/];
@@ -58,17 +58,17 @@ var createUsersDreams1623874462855 = /** @class */ (function () {
             });
         });
     };
-    createUsersDreams1623874462855.prototype.down = function (queryRunner) {
+    initialCreateUsersDreams1623955710729.prototype.down = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE `dreams` DROP FOREIGN KEY `FK_37ed376765930ab008dced8ab96`")];
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE \"dreams\" DROP CONSTRAINT \"FK_37ed376765930ab008dced8ab96\"")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.query("DROP TABLE `dreams`")];
+                        return [4 /*yield*/, queryRunner.query("DROP TABLE \"dreams\"")];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.query("DROP TABLE `users`")];
+                        return [4 /*yield*/, queryRunner.query("DROP TABLE \"users\"")];
                     case 3:
                         _a.sent();
                         return [2 /*return*/];
@@ -76,7 +76,7 @@ var createUsersDreams1623874462855 = /** @class */ (function () {
             });
         });
     };
-    return createUsersDreams1623874462855;
+    return initialCreateUsersDreams1623955710729;
 }());
-exports.createUsersDreams1623874462855 = createUsersDreams1623874462855;
-//# sourceMappingURL=1623874462855-create_users_dreams.js.map
+exports.initialCreateUsersDreams1623955710729 = initialCreateUsersDreams1623955710729;
+//# sourceMappingURL=1623955710729-initial_create_users_dreams.js.map

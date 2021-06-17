@@ -13,6 +13,9 @@
     "migrations":[
         "./build/database/migrations/*.ts"
     ],
+    "cli": {
+        "migrationsDir": "./build/database/migrations"
+    },
     "entities": [
         "./build/models/*.ts"
     ]

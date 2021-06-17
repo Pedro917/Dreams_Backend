@@ -9,7 +9,6 @@ var express_1 = __importDefault(require("express"));
 var celebrate_1 = require("celebrate");
 var cors_1 = __importDefault(require("cors"));
 var dotenv_1 = __importDefault(require("dotenv"));
-var morgan_1 = __importDefault(require("morgan"));
 var routes_1 = __importDefault(require("./routes"));
 var App = /** @class */ (function () {
     function App() {
@@ -22,7 +21,6 @@ var App = /** @class */ (function () {
         this.express.use(cors_1.default());
         this.express.use(routes_1.default);
         this.express.use(celebrate_1.errors());
-        this.express.use(morgan_1.default('dev'));
     };
     return App;
 }());

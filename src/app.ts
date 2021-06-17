@@ -4,7 +4,6 @@ import express, { Application } from "express";
 import { errors } from 'celebrate';
 import cors from "cors";
 import dotenv from "dotenv";
-import morgan from "morgan";
 import routes from "./routes";
 
 class App {
@@ -23,7 +22,6 @@ class App {
     this.express.use(cors());
     this.express.use(routes);
     this.express.use(errors());
-    this.express.use(morgan('dev'));
   }
 }
 
